@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Modyfikuj</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <form action="/admin/modify2" method="POST">
+        ID samochodu: <%= item[0].ID %><input type="hidden" name="ID" value=<%= item[0].ID %> /><br>
+        Wypozyczajacy: <%= item[0].personID %><input type="hidden" name="personID" value='"<%= item[0].personID %>"' /><br>
+        Data od: <input type="date" name="data_od"><br>
+        Data do: <input type="date" name="data_do"><br>
+        <input type="submit" value="Modyfikuj" />
+    </form>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Panel administratora</title>
+    <link rel='stylesheet' href='/stylesheets/admincarspanel.css' />
+  </head>
+  <body>
+    <form action="/admin/cars" method="POST">
+        <input type="submit" value="Zarządzaj samochodami"  />
+    </form>
+    <br>
+    <h2>Oczekujące na akceptacje: </h2>
+    <table style="width:100%">
+        <tr>
+            <th><b>ID samochodu</b></th>
+            <th><b>Wypożyczający</b></th>
+            <th><b>Data od</b></th>
+            <th><b>Data do</b></th>
+            <th><b>Stan rezerwacji</b></th>
+            <th>Potwierdź/modyfikuj/anuluj</th>
+        </tr>
+    
+    <% dane.forEach(function (item) { %>
+        <tr>
+            <td><%= item.ID %></td>
+            <td><%= item.personID %></td>
+            <td><%= moment( item.data_od ).format('DD-MM-YYYY') %></td>
+            <td><%= moment( item.data_do ).format('DD-MM-YYYY') %></td>
+            <td><%= item.stan %></td>
+            <td>
+            <div class="outer">
+                <% if (item.stan=="oczekujaca") {  %>
+                    <form class="inner" action="/admin/accept" method="post">
+                        <input type="hidden" name="ID" value=<%= item.ID %> />
+                        <input type="hidden" name="personID" value='"<%= item.personID %>"' />
+                        <input type="submit" value="Potwierdź" />
+                    </form>
+                    <% } %>
+                    <form class="inner" action="/admin/modify" method="post">
+                        <input type="hidden" name="ID" value=<%= item.ID %> />
+                        <input type="hidden" name="personID" value='"<%= item.personID %>"' />
+                        <input type="submit" value="Modyfikuj" />
+                    </form>
+                    <form class="inner" action="/admin/cancel" method="post">
+                        <input type="hidden" name="ID" value=<%= item.ID %> />
+                        <input type="hidden" name="personID" value='"<%= item.personID %>"' />
+                        <input type="submit" value="Anuluj" />
+                    </form>
+            </div>
+            </td>
+        </tr>
+    <% }) %>
+    </table>    
+  </body>
+</html>

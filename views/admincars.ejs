@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Zarzadzaj samochodami</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <% dane.forEach(function (item) { %>
+    	<div>ID: <%= item.ID %> Marka: <%= item.marka %> Paliwo: <%= item.paliwo %> Wspomaganie: <%= item.wspomaganie %></div>
+    <% }) %>
+  </body>
+</html>
